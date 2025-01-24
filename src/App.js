@@ -13,6 +13,9 @@ import { A } from "./Liftingstate/A";
 import { B } from "./Liftingstate/B";
 import { Debounce } from "./Debouncing/debounce";
 import { Errorhandling } from "./errorhandling";
+import { Debounce2 } from "./Debouncing/debounce2";
+
+import { Debouncestate } from "./Debouncing/debounceusingstate";
 
 function App() {
   // **********imagecard************
@@ -41,7 +44,7 @@ function App() {
   //   setval(newval);
   // };
 
-  // **********************Debouncing**********************************
+  // **********************Searching**********************************
   // const [val, setval] = useState("");
   // const [videodata, setvideodata] = useState([]);
   // const fetchdata = async (title) => {
@@ -100,8 +103,12 @@ function App() {
       {/* <A handlechange={handlechange} />
       <B val={val} /> */}
 
-      {/* *******************Debouncing************************* */}
-      {/* <input placeholder="enter to search videos" onChange={handlechange} />
+      {/* *******************Searching************************* */}
+      {/* <input
+        placeholder="enter to search videos"
+        onChange={handlechange}
+        value={val}
+      />
       <br />
       <Grid2 container spacing={2}>
         {videodata.map((item) => (
@@ -113,8 +120,11 @@ function App() {
 
       {/* *******************Debounce2************************** */}
       {/* <Debounce /> */}
+      {/* <Debounce2 /> */}
+      {/* <Debouncestate /> */}
+
       {/* *********************Error handling************ */}
-      <Errorhandling />
+      {/* <Errorhandling /> */}
     </div>
   );
 }
