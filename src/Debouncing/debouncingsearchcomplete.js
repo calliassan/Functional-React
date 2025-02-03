@@ -1,43 +1,36 @@
 import React, { useState, useEffect } from "react";
 
-function App() {
+export function Debouncesearch() {
   const [query, setQuery] = useState(""); // For user input
   const [debouncedQuery, setDebouncedQuery] = useState(""); // For debounced input
   const [videos, setVideos] = useState([]); // For fetched video data
 
   // Fetch data function
-  const fetchdata = async (title) => {
+  const fetchdata = async (query) => {
     try {
       const response = await fetch(
-        title
-          ? `https://content-xflix-backend.azurewebsites.net/v1/videos/${title}`
-          : `https://content-xflix-backend.azurewebsites.net/v1/videos/`
+        `https://rickandmortyapi.com/api/character/?name=${query}`
       );
       const res = await response.json();
-      setVideos(res.videos || []); // Update videos state
+      console.log(res.results);
+      setVideos(res.results);
     } catch (err) {
       console.error("Error fetching data:", err);
     }
   };
 
-  // Debounce the input query
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedQuery(query); // Update debounced query after delay
-    }, 2000);
-
-    return () => clearTimeout(timer); // Cleanup on input change
-  }, [query]);
-
-  // Fetch data when debouncedQuery changes
-  useEffect(() => {
-    fetchdata(debouncedQuery);
-  }, [debouncedQuery]);
-
-  // Handle input change
   const handlechange = (e) => {
     setQuery(e.target.value); // Update input query
   };
+  useEffect(() => {
+    let timerId = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 2000);
+    return () => clearTimeout(timerId);
+  }, [query]);
+  useEffect(() => {
+    fetchdata(debouncedQuery);
+  }, [debouncedQuery]);
 
   return (
     <div className="App">
@@ -49,12 +42,10 @@ function App() {
         value={query}
       />
       <div>
-        {videos.map((video) => (
-          <p key={video._id}>{video.title}</p> // Render video titles
+        {videos.map((item) => (
+          <p key={item.id}>{item.name}</p>
         ))}
       </div>
     </div>
   );
 }
-
-export default App;

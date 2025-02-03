@@ -16,6 +16,7 @@ import { Errorhandling } from "./errorhandling";
 import { Debounce2 } from "./Debouncing/debounce2";
 
 import { Debouncestate } from "./Debouncing/debounceusingstate";
+import { Debouncesearch } from "./Debouncing/debouncingsearchcomplete";
 
 function App() {
   // **********imagecard************
@@ -122,6 +123,7 @@ function App() {
       {/* <Debounce /> */}
       {/* <Debounce2 /> */}
       {/* <Debouncestate /> */}
+      <Debouncesearch />
 
       {/* *********************Error handling************ */}
       {/* <Errorhandling /> */}
